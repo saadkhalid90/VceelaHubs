@@ -1,7 +1,7 @@
 
 
 // function reading in the data, drawing mapbox and plotting locations
-async function readAndMap(cityData, multiLocs){
+async function readAndMap(cityData, multiLocs, mapboxParams){
 
   // read in the city's hubs
   const cityLocs = await d3.csv(cityData);

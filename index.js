@@ -21,4 +21,4 @@ readAndMap(cityData, [
     center: [74.86398, 36.388594],
     zoom: 13.4
   }
-]);
+], mapboxParams);
