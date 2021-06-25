@@ -37,14 +37,20 @@ body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
 
   .translateButtons {
     position: absolute;
-    width: 300px;
-    background: rgba(255,255,255,0.75);
+    width: 600px;
+    background: rgba(50,50,50,0.5);
     bottom: 10px;
-    left: calc(50% - 150px);
+    left: calc(50% - 300px);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+  }
+
+  .translateButtons p{
+    font-size: 12px;
+    font-family: sans-serif;
+    color: white;
   }
 
   .button {

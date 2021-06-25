@@ -1,10 +1,12 @@
-
+let filterSector;
 
 // function reading in the data, drawing mapbox and plotting locations
-async function readAndMap(cityData, multiLocs, mapboxParams){
+async function readAndMap(hubsData, multiLocs, mapboxParams){
 
   // read in the city's hubs
-  const cityLocs = await d3.csv(cityData);
+  let hubLocs = await d3.csv(hubsData);
+
+  hubLocs = hubLocs.filter(d => d.Lat != "");
 
   //////////////////////////////////////////////////////////////////////////
   // Setting up mapbox /////////////////////////////////////////////////////
@@ -77,11 +79,20 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
   // calculate the original d3 projection
   let d3Projection = getD3();
 
+  // Defining scales that determine the size of the location markers
+  const radScale = d3.scaleSqrt()
+                    .domain([1, 10])
+                    .range([3, 9]);
+
+  const strokeScale = d3.scaleSqrt()
+                    .domain([1, 10])
+                    .range([1, 2]);
+
   // positioned same as the location of city hubs, these will just animate when hovered
   const interBub = svg.append('g')
                 .attr('id', 'interBubG')
                 .selectAll("circle.interBub")
-                .data(cityLocs)
+                .data(hubLocs)
                 .enter()
                 .append("circle")
                 .classed("interBub", true)
@@ -97,24 +108,25 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
   const dots = svg.append('g')
                 .attr('id', 'interBubG')
                 .selectAll("circle.dot")
-                .data(cityLocs)
+                .data(hubLocs)
                 .enter()
                 .append("circle")
                 .classed("dot", true)
                 .attr("r", 1)
                 .attr("filter", 1)
-                .styles({
-                  'fill': '#FFFF00',
-                  'fill-opacity': 0,
-                  'stroke': '#FFFF00',
-                  'stroke-width': '2px',
-                  'stroke-opacity': 0.9
-                });
+                .styles(d => (
+                  {
+                    'fill': '#FFFF00',
+                    'fill-opacity': 0,
+                    'stroke': '#FFFF00',
+                    'stroke-width': strokeScale(d.Crafts.split(',').length),
+                    'stroke-opacity': 0.9
+                  }));
 
   // These circles don't show by default, They just appear when a location
   // is clicked (or is in focus)
   const focusCircle = svg.selectAll("circle.focusCircle")
-                .data(cityLocs)
+                .data(hubLocs)
                 .enter()
                 .append("circle")
                 .classed("focusCircle", true)
@@ -146,8 +158,9 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
         .transition()
         .duration(750)
         .attr("r", function(d, i){
+          const nCrafts = d.Crafts.split(',').length;
           const filter = d3.select(this).attr('filter');
-          return (filter == 1) ? 6 : 0;
+          return (filter == 1) ? radScale(nCrafts) : 0;
         });
 
     // positioning/ repositioning the interaction bubbles (animate when locations hovered)
@@ -181,19 +194,107 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
           [getMapCanvasExtent().width, getMapCanvasExtent().height]
         ],
         svg,
-        cityLocs,
+        hubLocs,
         18
       );
 
     // activate Hover events on the voronoi circles
     // (they are activated on each instant of render because the previous
     // voronoi is deleted)
-    activateHoverEvents();
+    activateHoverEvents([]);
 
     // activate click/ focus events
-    activateClickEvents();
+    activateClickEvents([]);
 
   };
+
+  // list of crafts categories in Vceela
+  const CraftCategs = [
+    "Embroidery",
+    "Silk",
+    "Wooden Products",
+    "Wool Products",
+    "Jewellery",
+    "Carpet Making Pottery",
+    "Khussa",
+    "Gindi",
+    "Carpet Making",
+    "Duree/Cotton Rugs",
+    "Khees",
+    "Pottery",
+    "Lungi",
+    "Khaddar",
+    "Sandals/Shoes",
+    "Cotton",
+    "Braiding",
+    "Musical Instruments",
+    "Patti Making",
+    "Tie and Dye",
+    "Carpets Making",
+    "Basketry",
+    "Floor Covering",
+    "Lacquer Art",
+    "Wax Painting",
+    "Metal Crafts",
+    "Cotton Printing",
+    "Sharma",
+    "Doll Making",
+    "Block Printing",
+    "Glass Work",
+    "Stone Carving",
+    "Caroet Making",
+    "Bone Work",
+    "Leather",
+    "Sussi",
+    "Dol Making",
+    "Candles",
+    "Gabba",
+    "Paper Mache",
+    "Rugs/Namda",
+    "Marble Cutting",
+    "Khaddar/Cotton",
+    "Paranda",
+    "Quilting",
+    "Thread Work",
+    "Leather Work"
+  ];
+
+  filterSector = (arr) => {
+      const arrRef = (arr.length == 0) ? CraftCategs : arr;
+
+      interBub.style('display', d => findCommonElements(arrRef, getSectorArray(d.Crafts))  ? 'block' : 'none');
+      dots.style('display', d => findCommonElements(arrRef, getSectorArray(d.Crafts))  ? 'block' : 'none');
+
+
+      removeIntVoronoi(svg);
+
+      console.log(hubLocs.filter(d => findCommonElements(arrRef, getSectorArray(d.Crafts))));
+
+      appendIntVoronoi(
+          {
+            x: d => d3Projection([+d.Lon, +d.Lat])[0],
+            y: d => d3Projection([+d.Lon, +d.Lat])[1]
+          },
+          {
+            x: d => d3Projection([+d.Lon, +d.Lat])[0],
+            y: d => d3Projection([+d.Lon, +d.Lat])[1]
+          },
+          [
+            [0, 0],
+            [getMapCanvasExtent().width, getMapCanvasExtent().height]
+          ],
+          svg,
+          hubLocs.filter(d => findCommonElements(arrRef, getSectorArray(d.Crafts))),
+          18
+        );
+
+        activateHoverEvents(arr);
+
+        // activate click/ focus events
+        activateClickEvents(arr);
+  }
+
+
 
   // position the locations for the first time
   render();
@@ -210,33 +311,51 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
   // function for activating event listeners - to add and remove tooltip
   // (on voronoi circles)
 
-  function activateHoverEvents(){
+  function activateHoverEvents(arr){
+
+    const arrRef = (arr.length == 0) ? CraftCategs : arr;
+
     const transDur = 175;
-    svg.selectAll("circle.circle-catcher").on('mouseover', function(d, i){
-      appendTooltip(d3.event, d);
 
-      const LM = d3.select(this).datum()["Famous_Landmarks"];
+    svg.selectAll("circle.circle-catcher")
+      .filter(d => findCommonElements(arrRef, getSectorArray(d.Crafts)))
+      .on('mouseover', function(d, i){
+        appendTooltip(d3.event, d);
 
-      d3.selectAll('circle.dot').transition()
-                  .duration(transDur)
-                  .attr('r', d => (d["Famous_Landmarks"] == LM) ? 12 : 6)
-                  .style('stroke-opacity', d => (d["Famous_Landmarks"] == LM) ? 0.9 : 0.3);
+        const LM = d3.select(this).datum()["Famous_Landmarks"];
 
-      svg.selectAll("circle.interBub")
-        //.filter((d, i) => d["Famous_Landmarks"] == LM)
-        .transition()
-        .duration(transDur + 75)
-        .attr('r', d => (d["Famous_Landmarks"] == LM) ? 7 : 0);
+        d3.selectAll('circle.dot').transition()
+                    .duration(transDur)
+                    .attr('r', d => {
+                      const nCrafts = d.Crafts.split(',').length;
+                      if (d["Famous_Landmarks"] == LM){
+                        return 12;
+                      }
+                      else {
+                        return radScale(nCrafts);
+                      }
+                    })
+                    .style('stroke-opacity', d => (d["Famous_Landmarks"] == LM) ? 0.9 : 0.3);
+
+        svg.selectAll("circle.interBub")
+          //.filter((d, i) => d["Famous_Landmarks"] == LM)
+          .transition()
+          .duration(transDur + 75)
+          .attr('r', d => (d["Famous_Landmarks"] == LM) ? 7 : 0);
     })
 
     svg.selectAll("circle.circle-catcher")
+      .filter(d => findCommonElements(arrRef, getSectorArray(d.Crafts)))
       .on('mouseout', function(d, i){
       removeTooltip();
 
       svg.selectAll("circle.dot")
         .transition()
         .duration(transDur)
-        .attr('r', 6)
+        .attr('r', d => {
+          const nCrafts = d.Crafts.split(',').length;
+          return radScale(nCrafts);
+        })
         .style('stroke-opacity', 0.9);
 
       svg.selectAll("circle.interBub")
@@ -246,9 +365,10 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
     })
   }
 
-  function activateClickEvents(){
+  function activateClickEvents(arr){
+    const arrRef = (arr.length == 0) ? CraftCategs : arr;
     const transDur = 175;
-    svg.selectAll("circle.circle-catcher").on('click', function(d, i){
+    svg.selectAll("circle.circle-catcher").filter(d => findCommonElements(arrRef, getSectorArray(d.Crafts))).on('click', function(d, i){
 
       const LM = d.Famous_Landmarks;
 
@@ -267,6 +387,7 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
     })
 
     svg.selectAll("rect#backgroundRect").on('click', function(d, i){
+
       map.easeTo({
         center: mapboxParams.center,
         zoom: mapboxParams.initZoomVal,
@@ -277,7 +398,10 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
         .classed('unfocus', true);
 
       svg.selectAll("circle.dot")
-        .attr('r', 6)
+        .attr('r', d => {
+            const nCrafts = d.Crafts.split(',').length;
+            return radScale(nCrafts);
+        })
         .style('stroke-opacity', 0.9);
       //
       svg.selectAll("circle.interBub")
@@ -328,16 +452,26 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
     if (locArr.length > 0){
       const transDur = 175;
       locArr.forEach(item => {
+
+
+
         d3.select(`div#${item.id}`).on('click', function(d, i){
+
+
           map.easeTo({
             center: item.center,
             zoom: item.zoom,
             duration: 1200
           })
 
+          console.log('clicked!')
+          svg.selectAll("rect#backgroundRect").on('click', null);
           // do every thing that we do on mouseout
           svg.selectAll("circle.dot")
-            .attr('r', 6)
+          .attr('r', d => {
+            const nCrafts = d.Crafts.split(',').length;
+            return radScale(nCrafts);
+          })
             .style('stroke-opacity', 0.9);
 
           svg.selectAll("circle.interBub")
@@ -347,6 +481,10 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
           svg.selectAll("circle.focusCircle")
             .classed('unfocus', true);
           })
+
+          // remove and redefine background click event
+
+
       });
     }
   }
@@ -360,4 +498,40 @@ async function readAndMap(cityData, multiLocs, mapboxParams){
 function getMapCanvasExtent() {
   const mapCanvas = document.getElementsByClassName('mapboxgl-canvas')[0]
   return mapCanvas.getBoundingClientRect()
+}
+
+function findCommonElements(arr1, arr2) {
+
+    // Create an empty object
+    let obj = {};
+
+        // Loop through the first array
+        for (let i = 0; i < arr1.length; i++) {
+
+            // Check if element from first array
+            // already exist in object or not
+            if(!obj[arr1[i]]) {
+
+                // If it doesn't exist assign the
+                // properties equals to the
+                // elements in the array
+                const element = arr1[i];
+                obj[element] = true;
+            }
+        }
+
+        // Loop through the second array
+        for (let j = 0; j < arr2.length ; j++) {
+
+        // Check elements from second array exist
+        // in the created object or not
+        if(obj[arr2[j]]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getSectorArray(text){
+  return text.split(",").map(d => d.trim());
 }
