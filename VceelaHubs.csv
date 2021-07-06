@@ -25,7 +25,7 @@ city,creative_sectors,Famous_Landmarks,Lat,Lon,Crafts
 ,,Taxila,33.747575,72.807456,Stone Carving
 ,,Rawalpindi,33.599148,73.0641,Doll Making
 ,,Attock,33.769532,72.361091,Carpet Making
-,,Jhelam,30.644193,9.82587,Khees
+,,Jhelum,32.9425,73.7257,Khees
 ,,Chakwal,32.932293,72.856166,"Khussa, Lungi"
 ,,Gujrat,32.568678,74.071481,"Khees, Wooden Products"
 ,,Wazirabad,32.441126,74.118423,"Duree/Cotton Rugs, Cotton Printing, Carpet Making"
@@ -37,19 +37,81 @@ city,creative_sectors,Famous_Landmarks,Lat,Lon,Crafts
 ,,Chiniot,31.721994,72.980035,Wooden Products
 ,,Karor Pacca,29.6438,71.9164,"Block Printing, Cotton Printing"
 ,,Faisalabad,31.422056,73.092325,"Cotton Printing, Cotton, Lungi, Wool Products"
-,,Shah Kot,32.07954,6.005729,"Cotton Printing, Leather Work"
+,,Shah Kot,31.5757,73.4815,"Cotton Printing, Leather Work"
 ,,Jhang,31.2781,72.3317,"Khaddar, Lungi"
-,,Kamalia,30.726988,72.645022,Khaddar
+,,Kamalia,30.7222,72.6447,Khaddar
 ,,Taunsa Sharif,30.702589,70.651128,Embroidery
-,,D.G. Khan,28.038557,3286522404,"Wool Products, Carpets Making, Embroidery"
+,,D.G. Khan,30.0489,70.6455,"Wool Products, Carpets Making, Embroidery"
 ,,Multan,30.1775,71.4885,"Cotton, Leather, Lungi, Khees, Pottery, Cotton Printing, Embroidery, Bone Work, Duree/Cotton Rugs, Sussi"
 ,,Vehari,30.041664,72.353535,"Khaddar, Cotton"
 ,,Bahawal Nagar,29.993592,73.252762,Wool Products
-,,Bahawalpur,29.394644,1.663875,"Embroidery, Duree/Cotton Rugs, Khees, Pottery, Carpet Making, Wool Products"
+,,Bahawalpur,29.3544,71.6911,"Embroidery, Duree/Cotton Rugs, Khees, Pottery, Carpet Making, Wool Products"
 ,,Ahmed Pur East,29.1459,71.2518,"Gindi, Carpet Making Pottery, Khussa"
-,,Cholistan,29.388245,71.689078,"Carpet Making, Wool Products, Gindi, Tie and Dye"
+,,Cholistan,28.5062,71.5724,"Carpet Making, Wool Products, Gindi, Tie and Dye"
 ,,Muzaffar Garh,30.0736,71.1805,"Basketry, Carpet Making"
 ,,Fort Minro,29.927638,69.984729,Embroidery
 ,,Lodhran,29.53904,71.63442,"Embroidery, Khees"
 ,,Kasur,31.117514,74.447831,"Khees, Lungi"
 ,,Lahore,31.519582,74.326297,"Caroet Making, Cotton Printing, Stone Carving, Doll Making, Carpet Making, Tie and Dye, Metal Crafts, Glass Work, Pottery, Duree/Cotton Rugs,"
+,,Jacobabad,28.2909461,68.4350628,"Sindhi Cap, Sindhi Dress, Rilhi Work, Farasi, Bead Work, Basketry, Glass Work, Azarband"
+,,Kandhot,28.2462639,69.17243732,"Rilhi Work, Hand Looms"
+,,Ghotki,28.00262865,69.31411029,Hand Looms
+,,Sukkur,27.6961883,68.8588754,"Sindhi Dress, Hand Looms, Glass Work, Wooden Products"
+,,Khairpur,27.5295402,68.7634109,"Wooden Products, Sindhi Dress, Rilhi Work, Glass Work, Hand Looms"
+,,Shikarpur,27.9561536,68.6319422,"Rilhi Work, Embroidery"
+,,Larkana,27.5564798,68.2101509,"Emboidery, Carper Making, Ajrak"
+,,Gambat,27.352305,68.5236061,"Siindhi Cap, Sindhi Dress, Farasi, Khees, Khatha, Doll Making"
+,,Naushahro Firoz,26.8400538,68.1188286,Sindhi Dress
+,,Dadu,26.7321366,67.7718334,"Sindhi Cap, Basketry, Farasi"
+,,Sanghar,28.1806564,68.3068077,"Rilhi Work, Embroidery"
+,,Nawabshah,26.2452915,68.4040229,Sindhi Cap
+,,Mirpur Khas,25.5262817,69.0110617,"Bead Work, Hand Looms, Basketry, Carpet Making, Sindhi Dress"
+,,Tando Adam,25.7620954,68.6578079,"Basketry, Bead Work, Hand Looms, Pottery"
+,,Sehwan,26.4255959,67.8625638,"Basketry, Block Printing, Azarband"
+,,Hala,25.8158653,68.4259226,"Basketry, Hand Looms, Sindhi Cap, Sindhi Dress, Ajrak, Azarband, Tobacco Pipes, Embroidery, Khees, Bone Work, Sussi, Bead Work, Tiles"
+,,Hyderabad,25.3801017,68.3750376,"Sindhi Cap, Doll Making, Sussi, Ceramics, Rilhi Work, Leather Work, Bangles, Azarband, Bead Work"
+,,Umarkot,25.3655302,69.7401257,"Sindhi Dress, Ajrak"
+,,Kotri,25.3635325,68.3068896,Ceramics
+,,Tando M Khan,25.1235743,68.5335188,Azarband
+,,Tharparkar,24.9462512,70.24251674,"Rilhi Work, Pottery, Leather Work, Bangles, Jewellery, Glass Work, Block Printing, Khatha, Sindhi Cap, Cushions"
+,,Tando Bago,24.78692871,68.96568772,"Farasi, Basketry"
+,,Badin,24.7881281,68.87766418,"Rilhi Work, Farasi"
+,,Mithi,24.736412,69.7973419,"Farasi, Carpet Making, Tobacco Pipes, Sussi, Pottery"
+,,Khore Wah,24.7543297,68.4176951,Farasi
+,,Karachi,24.8667795,67.0311286,"Stone Carving, Rugs/Namda, Pottery, Perfume Making, Marble, Leather Work, Khees, Tiles, Carpet Making, Ceramics, Azarband, Jewellery, Bone Carving, Ajrak"
+,,Zhob,31.3412293,69.4479828,"Thread Work, Sandals/Shoes, Embroidery"
+,,Qila Saifullah,30.701366,68.3597003,"Sandals/Shoes, Embroidery"
+,,Loralai,30.366865,68.6000654,"Sandals/Shoes, Jewellery, Carpet Making"
+,,Kohlu,29.8999977,69.2500203,"Sandals/Shoes, Carpet Making"
+,,Mawand,29.65428769,68.70960024,"Sandals/Shoes, Carpet Making"
+,,Ziarat,30.3810473,67.7262144,"Sandals/Shoes, Embroider, Rugs/Namda"
+,,Pishin,30.580285,66.9961323,"Sandals/Shoes, Embroider, Rugs/Namda, Jewellery"
+,,Chaman,30.915948,66.4631051,"Sandals/Shoes, Carpet Making, Embroidery"
+,,Gulistan,30.6091,66.5789,"Embroidery, Pottery"
+,,Kuchlagh,30.36359184,66.95015201,"Sandals/Shoes, Carpet Making"
+,,Quetta,30.1898158,67.019087,"Sandals/Shoes, Carpet Making, Jewellery, Pottery, Rugs/Namda, Embroidery, Leather Work, Glass Work, Mirror Work, Gilum"
+,,Nushki,29.550001,66.0166996,"Carpet Making, Jewellery, Embroidery, Gilum"
+,,Kalat,29.0333406,66.5843344,"Wooden Products, Wool Products, Embroidery, Leather Work, Mirror Work, Perfume Making, Jewellery, Carpet Making, Azarband"
+,,Dadhar,29.4880699,67.6422752,"Pottery, Embroidery, Sandals/Shoes"
+,,Sibi,29.5500097,67.8833398,"Pottery, Embroidery, Sandals/Shoes, Thread Work"
+,,Lahri,29.1821634,68.2103846,"Leather Work, Embroidery, Sandals/Shoes"
+,,Bughti,29.0352,69.1596,"Mirror Work, Saddle Bags, Musical Instrument, Sandals/Shoes"
+,,Dera Murad Jamali,28.5484368,68.220212,"Sandals/Shoes, Embroidery"
+,,Mithri,29.36443529,67.81576375,"Sandals/Shoes, Pottery"
+,,Bagh,30.8253544,67.7354498,"Sandals/Shoes, Pottery, Mirror Work, Embroidery"
+,,Nasirabad,28.333333,68.166667,"Sandals/Shoes, Embroidery"
+,,Pandran,28.75656573,66.72808486,"Sandals/Shoes, Embroidery, Wooden Products"
+,,Kharan,28.5807325,65.4207071,"Sandals/Shoes, Embroidery, Wool Products, Perfume Making, Azarband, Carpet Making, Rugs/Namda"
+,,Chagai,29.31470609,64.68943215,"Carpet Making, Sandals/Shoes, Embroidery, Gilum"
+,,Dalbandin,28.8963483,64.4097124,"Carpet Making, Sandals/Shoes, Embroidery, Gilum"
+,,Yakmach,28.7450876,63.8487211,"Sandals/Shoes, Embroidery"
+,,Khuzdar,27.8000135,66.6166537,"Mirror Work, Embroidery, Jewellery, Musical Instrument, Sandals/Shoes"
+,,Mahri,26.990069,66.751005,Saddla Bags
+,,Panjgur,26.9616074,64.1153339,"Sandals/Shoes, Mirror Work, Embroidery"
+,,Makran,25.2949997,63.34474685,"Embroidery, Jewellery, Sandals/Shoes, Wool Products, Perfume Making, Azarband, Basketry"
+,,Uthal,25.8071934,66.6219059,"Sandals/Shoes, Embroidery"
+,,Sonmiani,25.4250336,66.5964493,"Sandals/Shoes, Embroidery"
+,,Ormara,25.2105634,64.6374914,Embroidery
+,,Pasni,25.2626812,63.4753043,"Sandals/Shoes, Embroidery, Thread Work"
+,,Turbat,26.0027894,63.0505609,"Leather Work, Patti Making"
+,,Gwadar,25.1479816,62.3254553,"Sandals/Shoes, Embroidery"

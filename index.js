@@ -4,7 +4,7 @@ const mapboxParams = {
   center: [69.3451, 30.3753], // picked a center coordinate and Zoom value for Pakistan
   initZoomVal: 5.0,
 
-  styleMap: 'mapbox://styles/saadkhalid90/ckqapzjwx2yov17pegmsfr5t4'
+  styleMap: 'mapbox://styles/saadkhalid90/ckqrpk75a3uf318pd8rk8spdy'
 }
 
 const VceelaHubs = 'VceelaHubs.csv';

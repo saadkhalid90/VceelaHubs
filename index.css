@@ -14,14 +14,17 @@ body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
 
   .tooltip {
     position: fixed;
-    width: 180px;
-    background-color: rgb(21, 101, 192, 0.7);
+    width: 120px;
+    background-color: rgb(248, 198, 12, 1);
     z-index: 2;
-    color: #FFE300;
+    color: #212121;
     padding: 5px;
     box-sizing: border-box;
     border-radius: 4px;
-    border: 1px solid #7716bd;
+    border: 2px solid rgb(126, 126, 126, 1);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
   }
 
   .tooltip > p {
@@ -35,10 +38,10 @@ body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
     visibility: hidden;
   }
 
-  .translateButtons {
+  .infoBox {
     position: absolute;
     width: 600px;
-    background: rgba(50,50,50,0.5);
+    background: rgba(248,198,12,0.9);
     bottom: 10px;
     left: calc(50% - 300px);
     display: flex;
@@ -47,10 +50,21 @@ body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
     justify-content: center;
   }
 
-  .translateButtons p{
+  .LogoContain {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+
+  .LogoContain img{
+    margin: 20px;
+    width: 75px;
+  }
+
+  .infoBox p{
     font-size: 12px;
     font-family: sans-serif;
-    color: white;
+    color: #212121;
   }
 
   .button {

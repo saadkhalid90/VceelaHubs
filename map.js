@@ -1,5 +1,7 @@
 let filterSector;
 
+let dotCol = '#212121'
+
 // function reading in the data, drawing mapbox and plotting locations
 async function readAndMap(hubsData, multiLocs, mapboxParams){
 
@@ -82,7 +84,7 @@ async function readAndMap(hubsData, multiLocs, mapboxParams){
   // Defining scales that determine the size of the location markers
   const radScale = d3.scaleSqrt()
                     .domain([1, 10])
-                    .range([3, 9]);
+                    .range([3, 8]);
 
   const strokeScale = d3.scaleSqrt()
                     .domain([1, 10])
@@ -99,7 +101,7 @@ async function readAndMap(hubsData, multiLocs, mapboxParams){
                 .attr("r", 0)
                 .attr("filter", 1)
                 .styles({
-                  'fill': '#FFFF00',
+                  'fill': dotCol,
                   'fill-opacity': 0.8,
                   'stroke': 'none'
                 });
@@ -116,9 +118,9 @@ async function readAndMap(hubsData, multiLocs, mapboxParams){
                 .attr("filter", 1)
                 .styles(d => (
                   {
-                    'fill': '#FFFF00',
+                    'fill': dotCol,
                     'fill-opacity': 0,
-                    'stroke': '#FFFF00',
+                    'stroke': dotCol,
                     'stroke-width': strokeScale(d.Crafts.split(',').length),
                     'stroke-opacity': 0.9
                   }));
@@ -131,10 +133,11 @@ async function readAndMap(hubsData, multiLocs, mapboxParams){
                 .append("circle")
                 .classed("focusCircle", true)
                 .classed('unfocus', true)
+                .attr('city', d => d["Famous_Landmarks"])
                 .attr("r", 8)
                 .attr("filter", 1)
                 .styles({
-                  'fill': '#FFFF00',
+                  'fill': dotCol,
                   'fill-opacity': 0.9
                 });
 
@@ -210,53 +213,67 @@ async function readAndMap(hubsData, multiLocs, mapboxParams){
 
   // list of crafts categories in Vceela
   const CraftCategs = [
-    "Embroidery",
-    "Silk",
-    "Wooden Products",
-    "Wool Products",
-    "Jewellery",
-    "Carpet Making Pottery",
-    "Khussa",
-    "Gindi",
-    "Carpet Making",
-    "Duree/Cotton Rugs",
-    "Khees",
-    "Pottery",
-    "Lungi",
-    "Khaddar",
-    "Sandals/Shoes",
-    "Cotton",
-    "Braiding",
-    "Musical Instruments",
-    "Patti Making",
-    "Tie and Dye",
-    "Carpets Making",
+    "Ajrak",
+    "Azarband",
+    "Bangles",
     "Basketry",
-    "Floor Covering",
-    "Lacquer Art",
-    "Wax Painting",
-    "Metal Crafts",
-    "Cotton Printing",
-    "Sharma",
-    "Doll Making",
+    "Bead Work",
     "Block Printing",
-    "Glass Work",
-    "Stone Carving",
-    "Caroet Making",
+    "Bone Carving",
     "Bone Work",
-    "Leather",
-    "Sussi",
-    "Dol Making",
+    "Braiding",
     "Candles",
+    "Carpet Making",
+    "Ceramics",
+    "Cotton",
+    "Cotton Printing",
+    "Cushions",
+    "Doll Making",
+    "Duree/Cotton Rugs",
+    "Embroidery",
+    "Farasi",
+    "Floor Covering",
     "Gabba",
-    "Paper Mache",
-    "Rugs/Namda",
+    "Gilum",
+    "Gindi",
+    "Glass Work",
+    "Hand Looms",
+    "Jewellery",
+    "Khaddar",
+    "Khatha",
+    "Khees",
+    "Khussa",
+    "Lacquer Art",
+    "Leather Work",
+    "Lungi",
+    "Marble",
     "Marble Cutting",
-    "Khaddar/Cotton",
+    "Metal Crafts",
+    "Mirror Work",
+    "Musical Instruments",
+    "Paper Mache",
     "Paranda",
+    "Patti Making",
+    "Perfume Making",
+    "Pottery",
     "Quilting",
+    "Rilhi Work",
+    "Rugs/Namda",
+    "Saddle Bags",
+    "Sandals/Shoes",
+    "Sharma",
+    "Silk",
+    "Sindhi Cap",
+    "Sindhi Dress",
+    "Stone Carving",
+    "Sussi",
     "Thread Work",
-    "Leather Work"
+    "Tie and Dye",
+    "Tiles",
+    "Tobacco Pipes",
+    "Wax Painting",
+    "Wooden Products",
+    "Wool Products"
   ];
 
   filterSector = (arr) => {
