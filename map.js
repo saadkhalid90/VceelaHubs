@@ -431,7 +431,7 @@ async function readAndMap(hubsData, multiLocs, mapboxParams){
 
   // appends a tooltip showing location name
   const appendTooltip = (event, dat) => {
-    const toolTipWidth = 180;
+    const toolTipWidth = 120;
 
     const tool = d3.select(container).append('div')
       .attr('class', 'tooltip')
